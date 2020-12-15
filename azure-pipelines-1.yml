@@ -23,16 +23,6 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'clean install sonar:sonar'
     
-# Prepare Analysis Configuration task
-- task: SonarQubePrepare@4
-  inputs:
-    SonarQube: 'sonarQube'
-    scannerMode: 'Other'
-    extraProperties: 'sonar.projectKey=my-first-project'
 
-# Publish Quality Gate Result task
-- task: SonarQubePublish@4
-  inputs:
-    pollingTimeoutSec: '300'
 
       
