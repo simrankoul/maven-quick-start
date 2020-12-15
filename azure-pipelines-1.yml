@@ -15,6 +15,7 @@ steps:
   inputs:
     SonarQube: 'sonarQube'
     scannerMode: 'Other'
+    projectKey: 'my-first-project'
       
 - task: Maven@3
   inputs:
@@ -27,8 +28,3 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'clean install sonar:sonar'
     
-
-- task: SonarQubeAnalyze@4
-- task: SonarQubePublish@4
-  inputs:
-    pollingTimeoutSec: '300'
