@@ -11,6 +11,17 @@ pool: windowsAgent
 
 
 steps:
+# Prepare Analysis Configuration task
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonarQube'
+    scannerMode: 'Other'
+    extraProperties: 'sonar.projectKey=my-first-project'
+
+# Publish Quality Gate Result task
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -21,3 +32,4 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'clean install sonar:sonar'
+      
