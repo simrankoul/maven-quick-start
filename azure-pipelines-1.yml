@@ -11,11 +11,7 @@ pool: windowsAgent
 
 
 steps:
-- task: SonarQubePrepare@4
-  inputs:
-    SonarQube: 'sonarQube'
-    scannerMode: 'Other'
-    projectKey: 'my-first-project'
+
       
 - task: Maven@3
   inputs:
