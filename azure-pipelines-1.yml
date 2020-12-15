@@ -11,6 +11,11 @@ pool: windowsAgent
 
 
 steps:
+
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonarQube'
+    scannerMode: 'Other'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
