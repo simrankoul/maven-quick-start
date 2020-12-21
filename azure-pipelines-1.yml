@@ -16,9 +16,7 @@ steps:
   inputs:
     SonarQube: 'sonarQube'
     scannerMode: 'Other'
-    extraProperties: |
-      sonar.projectKey=maven-azuredevops
-      sonar.projectName=maven-azuredevops
+   
       
 - task: Maven@3
   inputs:
