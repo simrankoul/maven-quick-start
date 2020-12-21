@@ -6,9 +6,19 @@
 trigger:
 - main
 
-pool: WindowsAgent 
+pool: windowsAgent 
   
 steps:
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonarQube'
+    scannerMode: 'Other'
+    extraProperties: |
+      # Additional properties that will be passed to the scanner, 
+      # Put one key=value per line, example:
+      # sonar.exclusions=**/*.bin
+      sonar.projectName=myazuredevopsproject
+      sonar.projectKey=myazuredevopsproject
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -18,4 +28,8 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    goals: 'clean install'
+
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
