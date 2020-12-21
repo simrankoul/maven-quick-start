@@ -12,7 +12,13 @@ pool: windowsAgent
 
 
 steps:
-
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonarQube'
+    scannerMode: 'Other'
+    extraProperties: |
+      sonar.projectKey=maven-azuredevops
+      sonar.projectName=maven-azuredevops
       
 - task: Maven@3
   inputs:
@@ -25,6 +31,10 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'clean install sonar:sonar'
     
+    
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
