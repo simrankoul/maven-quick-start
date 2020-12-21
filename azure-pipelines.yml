@@ -6,8 +6,7 @@
 trigger:
 - main
 
-pool:
-  vmImage: windowsAgent
+pool: windowsAgent
 
 steps:
 - task: Maven@3
