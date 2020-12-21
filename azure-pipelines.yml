@@ -14,7 +14,9 @@ steps:
   inputs:
     SonarQube: 'sonarQube'
     scannerMode: 'Other'
-    projectKey: 'my-first-project'
+    projectKey: 'maven-azuredevops'
+
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -25,7 +27,7 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'clean install sonar:sonar'
-- task: SonarQubeAnalyze@4
+
 - task: SonarQubePublish@4
   inputs:
     pollingTimeoutSec: '300'
